@@ -1,20 +1,17 @@
+import { getMockUser, } from '../__mocks__/mockUser';
 import { UserService } from './UserService';
-import { v4 as uuid } from 'uuid';
+import { User } from '../entities/User';
 
 jest.mock('../repositories/UserRepository')
 const mockUserRepository = require('../repositories/UserRepository')
 
 describe('UserService', () => {
-  const mockUser = {
-    user_id: uuid(),
-    name: 'Algum nome',
-    email: 'text@dio.com'
-  }
+  const mockUser : User = getMockUser()
 
   const userService = new UserService({
     userRepository: mockUserRepository,
-    name: 'Algum nome',
-    email: 'text@dio.com'
+    name: "Algum nome",
+    email: "text@dio.com"
   })
 
   it('Deve retornar um usuario, quando for salvo', async () => {
